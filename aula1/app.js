@@ -1,15 +1,11 @@
 const express = require('express');
 const app = express();
 
-app.get("/", (req, res) => {
-    let obj = req.query
+const indexRoute = require('./routes/index');
+const usersRoute = require('./routes/users');
 
-    return res.send({message: `Tudo OK com o GET. Parametro enviado: ${obj.nome}`});
-})
-
-app.post("/", (req, res) => {
-    return res.send({message: 'Tudo OK com o POST'});
-})
+app.use('/', indexRoute)
+app.use('/users', usersRoute)
 
 app.listen(3000);
 
