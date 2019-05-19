@@ -16,12 +16,14 @@ mongoose.connection.on('error', (err) => {
 mongoose.connection.on('disconnected', (err) => {
     console.log('Aplicação desconectada do banco de dados');
 });
+
 mongoose.connection.on('connected', (err) => {
     console.log('Aplicação conectada do banco de dados');
 });
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json);
+app.use(express.urlencoded({ extended: true })); // body parser - parse json in body.requests
+app.use(bodyParser.json()); // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({ extended: true  })); // to support URL-encoded bodies
 
 const indexRoute = require('./routes/index');
 const usersRoute = require('./routes/users');
